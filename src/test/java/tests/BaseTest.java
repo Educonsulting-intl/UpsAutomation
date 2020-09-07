@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
@@ -18,12 +19,22 @@ import pageobjects.MainPage;
 public class BaseTest {
 
 	protected WebDriver driver;
+	private DesiredCapabilities capabilities;
 	
 	@BeforeSuite
 	public void setup()
 			throws MalformedURLException {
-		WebDriverManager.firefoxdriver().setup();
-		driver = new FirefoxDriver();
+
+		capabilities = new DesiredCapabilities();
+		capabilities.setBrowserName("chrome");
+		capabilities.setVersion("85.0");
+		capabilities.setCapability("enableVNC", true);
+		capabilities.setCapability("enableVideo", false);
+
+		driver = new RemoteWebDriver(
+		    URI.create("http://192.168.20.176:4444/wd/hub").toURL(), 
+		    capabilities
+		);
 		driver.manage().window().maximize();
 		driver.get("http://192.168.20.226/");
 
