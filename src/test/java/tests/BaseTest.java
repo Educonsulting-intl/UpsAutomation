@@ -32,7 +32,7 @@ public class BaseTest {
 		capabilities.setCapability("enableVideo", false);
 
 		driver = new RemoteWebDriver(
-		    URI.create("http://192.168.20.176:4444/wd/hub").toURL(), 
+		    URI.create("http://192.168.18.22:4444/wd/hub").toURL(), 
 		    capabilities
 		);
 		driver.manage().window().maximize();
