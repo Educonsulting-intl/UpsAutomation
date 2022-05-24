@@ -12,6 +12,8 @@ public class MainPage extends BasePage{
 	@FindBy(css="#backupTime")
 	WebElement backupTime;
 	@FindBy(css="#showpage")
+	WebElement uspMode;
+	@FindBy(css="#upsMode")
 	WebElement f;
 	
 	public MainPage(WebDriver driver) {
@@ -27,6 +29,9 @@ public class MainPage extends BasePage{
 			e.printStackTrace();
 		}
 		driver.switchTo().frame(f);
+		
+		String upsModeSrt = getText(uspMode);
+		System.out.println("UPS_Mode: "+upsModeSrt);
 		
 		String backupTimeStr = getText(backupTime);
 		int backupTimeInt = Integer.parseInt(backupTimeStr);
